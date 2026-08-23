@@ -1,0 +1,145 @@
+﻿<!doctype html>
+<html lang="ja">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="PRプランナー1次試験の第1章を無料で試せるトライアル版。10問演習、10問模試、スマホ対応。">
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="PRプランナー実践アプリ トライアル版">
+    <meta property="og:description" content="第1章を無料で体験。10問演習、10問模試、スマホ対応。">
+    <meta property="og:url" content="https://timetokitoki1-del.github.io/PR-planner-1st-trial/">
+    <meta property="og:image" content="https://timetokitoki1-del.github.io/PR-planner-1st-trial/assets/og-thumbnail-trial-practice-1200x630.png">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="PRプランナー実践アプリ トライアル版">
+    <meta name="twitter:description" content="第1章を無料で体験。10問演習、10問模試、スマホ対応。">
+    <meta name="twitter:image" content="https://timetokitoki1-del.github.io/PR-planner-1st-trial/assets/og-thumbnail-trial-practice-1200x630.png">
+    <title>PRプランナー実践アプリ トライアル版</title>
+    <link rel="stylesheet" href="assets/app.css">
+  </head>
+  <body>
+    <div class="app">
+      <header class="hero">
+        <section class="hero-main">
+          <span class="badge" id="editionLabel">第1章トライアル版</span>
+          <h1>PRプランナー1次試験<br>演習アプリ</h1>
+          <p>公式サンプルのようなABCD択一形式で、第1章「広報・PRの基本」を確認できます。10問のトライアル模試も試せるので、選択肢ごとの理由を読みながら、ひっかけの見抜き方まで練習できます。</p>
+          <div class="hero-actions">
+            <button class="btn primary" data-tab="chapters">第1章を解く</button>
+            <button class="btn" data-tab="mock">10問模試を試す</button>
+            <button class="btn" data-tab="wrong">間違った問題を解く</button>
+            <button class="btn" data-tab="bookmark">ブックマーク</button>
+          </div>
+        </section>
+        <aside class="hero-side">
+          <h2>トライアル内容</h2>
+          <div class="metric-grid">
+            <div class="metric"><strong id="questionCount">0</strong><span>収録問題</span></div>
+            <div class="metric"><strong id="chapterCount">1</strong><span>対象章</span></div>
+            <div class="metric"><strong id="mockInfo">10問 / 16分</strong><span>トライアル模試</span></div>
+            <div class="metric"><strong id="wrongCount">0</strong><span>間違った問題</span></div>
+            <div class="metric"><strong id="bookmarkCount">0</strong><span>ブックマーク</span></div>
+          </div>
+        </aside>
+      </header>
+      <nav class="tabs">
+        <button class="tab" data-tab="chapters" aria-selected="true">章別演習</button>
+        <button class="tab" data-tab="mock">模試</button>
+        <button class="tab" data-tab="wrong">間違った問題を解く</button>
+        <button class="tab" data-tab="bookmark">ブックマーク</button>
+      </nav>
+      <main class="main">
+        <section class="screen active panel" id="homeScreen">
+          <div class="panel-title">
+            <h2>学習する章を選ぶ</h2>
+            <button class="btn primary" id="startMockBtn">10問模試を開始</button>
+          </div>
+          <div class="chapter-grid" id="chapterGrid"></div>
+          <div class="note-cta">
+            <strong>フル版では50問の本番形式模試に挑戦できます</strong>
+            <span>トライアル模試は10問だけ。全14章を横断する50問模試と章別演習で仕上げたい方は、Noteの案内をご確認ください。</span>
+            <a class="btn primary note-link" href="https://note.com/s_shindan" target="_blank" rel="noopener">フル版の案内を見る</a>
+          </div>
+        </section>
+        <section class="screen panel" id="quizScreen">
+          <div class="quiz-head">
+            <div>
+              <h2 id="quizTitle"></h2>
+              <p class="footer-note" id="quizSub"></p>
+              <div class="progress"><div id="progressBar"></div></div>
+            </div>
+            <div class="timer" id="timerWrap"><span>残り時間</span><strong id="timer">00:00</strong></div>
+          </div>
+          <article class="question-card">
+            <div class="question-meta">
+              <span class="pill" id="questionIndex"></span>
+              <span class="pill orange" id="questionDifficulty"></span>
+            </div>
+            <div class="question-text" id="questionText"></div>
+            <div class="options" id="options"></div>
+            <div class="explanation" id="explanation">
+              <h3>選択肢ごとの解説</h3>
+              <div class="choice-reasons" id="choiceReasons"></div>
+              <div class="note-cta compact">
+                <strong>この論点をもう少し深く読む</strong>
+                <span>関連する章の解説Noteで、背景知識・比較表・語呂合わせを確認できます。</span>
+                <a class="btn note-link" href="https://note.com/s_shindan" target="_blank" rel="noopener">Noteで深掘り</a>
+              </div>
+            </div>
+            <div class="quiz-toolbar" style="margin-top: 18px;">
+              <button class="btn" id="bookmarkBtn" aria-pressed="false">ブックマークに保存</button>
+              <button class="btn primary" id="nextBtn">次の問題へ</button>
+              <button class="btn warn" id="finishBtn">ここで終了して判定</button>
+              <button class="btn" id="homeBtn">章選択へ戻る</button>
+            </div>
+          </article>
+        </section>
+        <section class="screen panel" id="resultScreen">
+          <div class="panel-title"><h2 id="resultTitle">演習結果</h2></div>
+          <div class="result-box">
+            <div>
+              <p id="resultMeta"></p>
+              <div class="review-advice" id="reviewAdvice"></div>
+              <div class="result-actions">
+                <button class="btn primary" id="resultWrongBtn">間違った問題を解く</button>
+                <button class="btn" id="resultHomeBtn">章選択へ戻る</button>
+              </div>
+            </div>
+            <div class="score">
+              <div><strong id="scoreRate">0%</strong><span id="scoreDetail"></span><br><span id="scoreJudge"></span></div>
+            </div>
+          </div>
+          <h3 style="margin-top: 22px;">結果一覧</h3>
+          <div class="review-list" id="reviewList"></div>
+        </section>
+        <section class="screen panel" id="reviewScreen">
+          <div class="panel-title">
+            <h2>間違った問題</h2>
+            <button class="btn primary" id="retryWrongBtn">間違った問題を解く</button>
+          </div>
+          <div id="wrongReviewList"></div>
+          <p class="footer-note">正解した問題は自動で「間違った問題」リストから外れます。</p>
+        </section>
+        <section class="screen panel" id="bookmarkScreen">
+          <div class="panel-title">
+            <h2>ブックマークした問題</h2>
+            <button class="btn primary" id="retryBookmarkBtn">ブックマーク問題を解く</button>
+          </div>
+          <div id="bookmarkReviewList"></div>
+          <div class="note-cta">
+            <strong>保存した問題は、Noteで読み直す目印にもなります</strong>
+            <span>苦手な論点が見えてきたら、解説記事に戻って理解を厚くしてから再挑戦しましょう。</span>
+            <a class="btn note-link" href="https://note.com/s_shindan" target="_blank" rel="noopener">Noteの記事を見る</a>
+          </div>
+        </section>
+      </main>
+    </div>
+    <script>
+      window.PR_APP_CONFIG = { edition: "trial", noteUrl: "https://note.com/s_shindan", mockCount: 10, mockMinutes: 16 };
+    </script>
+    <script src="assets/question-bank-trial.js"></script>
+    <script src="assets/app.js"></script>
+  </body>
+</html>
+
